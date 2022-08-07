@@ -79,6 +79,7 @@ def refresh(token):
     if not validate_token(token):
         raise InvalidRefresh()
     jwt_data = claim_token(token)
+    
     if jwt_data.get("type") != "refresh":
         raise InvalidRefresh()
     cache.expire(token, timeout=0)
